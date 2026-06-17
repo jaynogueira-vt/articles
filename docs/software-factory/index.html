@@ -282,12 +282,13 @@
   <div class="wrap">
     <p class="kicker">06 · The pipeline</p>
     <h2 class="sec">End-to-end flow: one work item, intake to merge</h2>
-    <p class="lead">The same nine layers, traced as a single run with the concrete default tool named at every station. Colour marks who owns the station. The dashed loop is the fix cycle when a reviewer requests changes.</p>
+    <p class="lead">The same nine layers, traced as a single run with the concrete default tool named at every station. Colour marks who owns the station. Two dashed loops return to the agent: the red one is the human request-changes cycle; the amber one is the automated merge-ready upkeep the orchestration runtime drives until merge, fixing CI, re-syncing the branch with the default branch, and addressing new review comments.</p>
     <div class="diagram">
       <svg viewBox="0 0 900 1015" role="img" aria-label="End-to-end flow from intake to merge">
         <defs>
           <marker id="fa" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--accent)"/></marker>
           <marker id="fl" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--c-human)"/></marker>
+          <marker id="fu" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--c-hybrid)"/></marker>
         </defs>
         <text x="120" y="24" fill="var(--muted-foreground)" font-family="var(--font-mono),monospace" font-size="10.5" letter-spacing="2">ONE WORK ITEM · START → MERGE · DEFAULT STACK PER STATION</text>
 
@@ -308,6 +309,10 @@
         </g>
         <path d="M794,848 H848 V338 H796" fill="none" stroke="var(--c-human)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#fl)" opacity="0.85"/>
         <text x="864" y="600" fill="var(--c-human)" font-size="11" font-family="var(--font-sans),sans-serif" transform="rotate(90 864 600)">request changes → fix loop</text>
+
+        <!-- merge-ready upkeep loop: delivery (9) -> agent (4), driven by orchestration -->
+        <path d="M120,764 H58 V344 H118" fill="none" stroke="var(--c-hybrid)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#fu)" opacity="0.9"/>
+        <text x="40" y="560" fill="var(--c-hybrid)" font-size="11" font-family="var(--font-sans),sans-serif" transform="rotate(-90 40 560)">merge-ready upkeep loop</text>
 
         <g font-family="var(--font-sans),sans-serif">
           <!-- node maker: rect + stripe + num + title + desc + tool + chip -->
@@ -420,7 +425,7 @@
     <div class="grid g3">
       <div class="card"><div class="ct">Builds · the moat</div><h4>4 stations</h4><p>Intake, control plane / reviewer UX, quality &amp; eval gates. Org-specific, durable, the instruments for every swap.</p></div>
       <div class="card"><div class="ct">Buys / bundles</div><h4>5 stations</h4><p>Agent, runtime, sandbox + model (bundled with the agent), delivery adapters, live tools (MCP). Replaced on the market's cadence.</p></div>
-      <div class="card"><div class="ct">Human · the gate</div><h4>1 station</h4><p>Review and merge. The factory prepares and routes; a human always decides. Request-changes loops back to the agent.</p></div>
+      <div class="card"><div class="ct">Human · the gate</div><h4>1 station</h4><p>Review and merge. The factory prepares, maintains, and routes; a human always decides. Two loops return to the agent: human request-changes, and automated merge-ready upkeep (CI, branch re-sync, new comments).</p></div>
     </div>
   </div>
 </section>
