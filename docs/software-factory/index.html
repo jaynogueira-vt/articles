@@ -136,7 +136,7 @@
   <div class="wrap">
     <p class="kicker">Proposal · Architecture</p>
     <h1 class="font-display" style="font-weight:400;font-size:clamp(2.4rem,6vw,4rem);line-height:1.08;margin:.6rem 0 0">The Software Factory, designed for change</h1>
-    <p class="lead" style="margin-top:1.1rem">This proposal sets out an org-wide software factory: one platform that turns engineering work into reviewed, merge-ready pull requests, architected so every layer stays best-of-breed and replaceable as the AI landscape shifts. It states the recommended architecture, the build-versus-buy decision for each layer, and the decision requested of leadership.</p>
+    <p class="lead" style="margin-top:1.1rem">This proposal sets out an org-wide software factory: one platform where a contributor labels a ticket, an agent produces the change as a pull request, and the same line keeps that PR merge-ready until a human merges it. It is architected so every layer stays best-of-breed and replaceable as the AI landscape shifts. It states the recommended architecture, the build-versus-buy decision for each layer, and the decision requested of leadership.</p>
     <div class="meta">
       <span>From: <b>Jay Nogueira</b></span>
       <span>To: <b>Engineering leadership</b></span>
@@ -168,12 +168,12 @@
 <section id="problem">
   <div class="wrap">
     <p class="kicker">01 · The problem</p>
-    <h2 class="sec">Routine engineering work is bounded by headcount, and AI tooling is unmanaged</h2>
-    <p class="lead">A large share of engineering throughput goes into changes that are well understood but still fully manual: bug fixes with a clear reproduction, dependency and framework upgrades, feature-flag removals, small well-specified features, and mechanical refactors. This work is necessary and rarely difficult, yet it scales only with the number of engineer-hours available to write it and shepherd it through review. More capacity means more headcount.</p>
-    <p>At the same time, AI coding tools have become individually capable but are adopted ad hoc, one engineer at a time, with no shared standards for isolation, review, evaluation, or audit. At the organization level this is neither safe nor measurable: there is no consistent quality gate, no record of what a tool changed or why, and no data on whether any of it improves delivery. The two problems compound. The work that is most automatable is still done by hand, while the automation that does exist runs outside any controls.</p>
+    <h2 class="sec">Contribution is fragmented, and getting a PR to merge-ready is manual the whole way</h2>
+    <p class="lead">Two parts of the contribution lifecycle are almost entirely manual today. First, producing the change and its pull request for well-scoped work: bug fixes with a clear reproduction, dependency and framework upgrades, feature-flag removals, small well-specified features, mechanical refactors. Second, and just as costly, keeping that PR merge-ready until it lands: responding to review comments, fixing failing CI, and re-syncing the branch with the default branch as it moves. Both halves scale only with the engineer-hours available to do them.</p>
+    <p>The deeper problem is that every contributor does this through a different setup. Engineers and non-engineers alike push code from their own IDE, their own coding agent, their own harness, each wired to a different and usually incomplete slice of context. The MCP servers, CLIs, APIs, and internal knowledge bases that produce good output are something many contributors either cannot or will not connect in full, so the output quality swings widely from one contributor to the next. There is no shared quality gate, no consistent record of what was changed or why, and a great deal of human time spent shepherding PRs across the finish line.</p>
     <div class="call">
       <h4>What this proposal solves</h4>
-      <p>Turn that class of work into a standardized, inspected, auditable production line, and put AI tooling behind organization-owned controls rather than individual discretion. One line, one quality gate, one audit trail, available to every team.</p>
+      <p>Replace the fragmented setups with one standardized line that any contributor can trigger by labelling a ticket. A single agent, wired once to the full org-curated context, does the work, opens the pull request, and keeps it merge-ready until a human merges. One line, one quality gate, one audit trail, the same well-equipped context behind every change.</p>
     </div>
   </div>
 </section>
@@ -182,20 +182,21 @@
 <section id="what">
   <div class="wrap">
     <p class="kicker">02 · What it is</p>
-    <h2 class="sec">A production line that turns a unit of work into a reviewed, merge-ready pull request</h2>
-    <p class="lead">The factory accepts a unit of work (a ticket, a flag to remove, a dependency to bump) and normalizes it into a structured work item with explicit scope and a risk class. A single run then proceeds end to end, and a person makes the final call.</p>
+    <h2 class="sec">Label a ticket, get a reviewed PR, kept merge-ready until it lands</h2>
+    <p class="lead">A contributor adds a label to a ticket in the issue tracker. An agent picks it up on a schedule (the same pattern as a scheduled automation job), works it with the full org context wired in, and opens a pull request. The same line then keeps that PR merge-ready until a human merges it. No special IDE, coding agent, or local setup is required from the contributor; the label is the entire interface.</p>
     <div class="plist">
-      <div class="pitem"><span class="pn">1</span><div><h4>Intake</h4><p>A ticket or request becomes a structured work item: what to change, where, the acceptance criteria, and how risky it is.</p></div></div>
-      <div class="pitem"><span class="pn">2</span><div><h4>Build</h4><p>An agent plans the change and writes it in an isolated, ephemeral workspace with scoped, short-lived credentials.</p></div></div>
+      <div class="pitem"><span class="pn">1</span><div><h4>Trigger</h4><p>A label on a tracker ticket adds it to the queue. Any contributor, engineer or not, can do this; no local toolchain or agent setup needed.</p></div></div>
+      <div class="pitem"><span class="pn">2</span><div><h4>Build</h4><p>An agent wired to the full org-curated context (every approved MCP server, CLI, API, and knowledge base) plans and writes the change in an isolated, ephemeral workspace with scoped, short-lived credentials.</p></div></div>
       <div class="pitem"><span class="pn">3</span><div><h4>Inspect</h4><p>The full quality suite runs against the result: tests, lint, type-check, security scan, build. Nothing proceeds on a failed gate.</p></div></div>
       <div class="pitem"><span class="pn">4</span><div><h4>Deliver</h4><p>The system opens a pull request carrying the diff and the evidence of every check, and links it back to the originating ticket.</p></div></div>
-      <div class="pitem"><span class="pn">5</span><div><h4>Review and merge</h4><p>A human reviewer approves, requests changes, or rejects. On approval, a human merges. The factory prepares and routes; it never merges on its own.</p></div></div>
+      <div class="pitem"><span class="pn">5</span><div><h4>Keep it merge-ready</h4><p>Until merge, the line responds to review comments, fixes failing CI, and re-syncs the branch with the default branch as it moves, so the PR is never blocked on stale or mechanical work.</p></div></div>
+      <div class="pitem"><span class="pn">6</span><div><h4>Review and merge</h4><p>A human reviewer approves, requests changes, or rejects. On approval, a human merges. The factory prepares and maintains; it never merges on its own.</p></div></div>
     </div>
-    <p>Every step (the plan, the tool calls, the diffs, the decisions, the retries) is recorded, so any run can be reconstructed from work item to merged code. The detailed station-by-station architecture is in the second half of this document; the end-to-end flow diagram there traces one run through every layer.</p>
+    <p>Every step (the plan, the tool calls, the diffs, the decisions, the retries, the upkeep) is recorded, so any run can be reconstructed from labelled ticket to merged code. The detailed station-by-station architecture is in the second half of this document; the end-to-end flow diagram there traces one run through every layer.</p>
     <div class="grid g3">
-      <div class="card"><div class="ct">What changes</div><h4>A draft, not a blank editor</h4><p>Routine work arrives as a pre-validated pull request to review, instead of a task to write from scratch.</p></div>
-      <div class="card"><div class="ct">What changes</div><h4>Throughput beyond headcount</h4><p>This class of work stops scaling purely with engineer-hours. Engineering time shifts to reviewing and deciding.</p></div>
-      <div class="card"><div class="ct">What changes</div><h4>One gate, full audit</h4><p>Every AI-produced change runs through the same controls and leaves a complete record, instead of ad-hoc tooling with none.</p></div>
+      <div class="card"><div class="ct">What changes</div><h4>One fully-equipped agent</h4><p>Every change comes from one agent wired to the complete org context, instead of many contributors with different tools and partial context. Consistent, higher-quality output.</p></div>
+      <div class="card"><div class="ct">What changes</div><h4>PRs stay green and current</h4><p>Addressing comments, fixing CI, and re-syncing with the default branch happen on the line, instead of an engineer babysitting each PR to the finish.</p></div>
+      <div class="card"><div class="ct">What changes</div><h4>Anyone can contribute</h4><p>A label on a ticket is the whole interface. Non-engineers and engineers trigger work the same way, with no local setup and the same controls behind it.</p></div>
     </div>
   </div>
 </section>
@@ -262,7 +263,7 @@
         <tbody>
           <tr><td class="layer">1 · Intake &amp; Work Spec</td><td>Accept and normalize work from the tracker, chat, UI, API. Assign idempotency key, team namespace, scope policy.</td><td class="cmono">Normalized WorkItem schema</td><td><span class="chip build">Build</span></td></tr>
           <tr><td class="layer">2 · Control Plane &amp; Reviewer UX</td><td>Org-authenticated reviewer surface; the server boundary to the runtime; aggregation and status.</td><td class="cmono">Run API + signals</td><td><span class="chip build">Build</span></td></tr>
-          <tr><td class="layer">3 · Orchestration Runtime</td><td>Durable state, retries, timers, human-wait-as-state, replay, per-team isolation.</td><td class="cmono">Workflow interface</td><td><span class="chip hybrid">Own contract</span></td></tr>
+          <tr><td class="layer">3 · Orchestration Runtime</td><td>Durable state, retries, timers, human-wait-as-state, replay, per-team isolation. Keeps the run alive after the PR opens to drive merge-ready upkeep.</td><td class="cmono">Workflow interface</td><td><span class="chip hybrid">Own contract</span></td></tr>
           <tr><td class="layer">4 · Agent Execution</td><td>The implementer. Plans and writes the change, returns a PR reference plus evidence. Fastest churn.</td><td class="cmono">solve(WorkItem,Repo)→RunResult</td><td><span class="chip hybrid">Hybrid · multi-vendor</span></td></tr>
           <tr><td class="layer">5 · Execution Sandbox</td><td>Isolated, ephemeral workspace: filesystem, scoped creds, egress policy, cleanup.</td><td class="cmono">Sandbox API</td><td><span class="chip bundled">Bundled</span></td></tr>
           <tr><td class="layer">6 · Model Layer</td><td>Inference. The agent runtime brings its model; a governed gateway is a later add for cross-provider routing.</td><td class="cmono">OpenAI-compatible gateway</td><td><span class="chip bundled">Bundled</span></td></tr>
@@ -450,7 +451,7 @@
         <tbody>
           <tr><td class="layer">Intake &amp; Work Spec</td><td><span class="chip build">Build</span></td><td>Scope policy, risk classification, and idempotency are org-specific and rarely change. Durable moat, not commodity.</td></tr>
           <tr><td class="layer">Control Plane / Reviewer UX</td><td><span class="chip build">Build</span></td><td>The reviewer experience is a competitive surface and must live inside org identity and existing tooling. No vendor should own the reviewer surface.</td></tr>
-          <tr><td class="layer">Orchestration Runtime</td><td><span class="chip hybrid">Own contract</span></td><td>Durable execution is solved, but a full workflow engine is overkill for a line that is mostly idle human-review waits. Own a thin orchestration contract; run it on a managed agent runtime. A durable-workflow engine stays a drop-in replacement behind the same contract if the workflow ever outgrows it.</td></tr>
+          <tr><td class="layer">Orchestration Runtime</td><td><span class="chip hybrid">Own contract</span></td><td>Durable execution is solved, but a full workflow engine is overkill for a line that is mostly idle, waiting on review. The run also reacts to events while it waits, re-triggering the agent on new review comments, CI failures, and default-branch updates to keep the PR merge-ready. Own a thin orchestration contract; run it on a managed agent runtime. A durable-workflow engine stays a drop-in replacement behind the same contract if the workflow ever outgrows it.</td></tr>
           <tr><td class="layer">Agent Execution</td><td><span class="chip hybrid">Hybrid</span></td><td>The fastest-churning layer. Run multiple vendor agents behind one contract; keep an open-source fallback for independence and worst-case portability.</td></tr>
           <tr><td class="layer">Execution Sandbox</td><td><span class="chip bundled">Bundled</span></td><td>Managed agents already run in isolated cloud containers, so the sandbox arrives with the layer-4 choice. Procure a standalone sandbox only for the self-hosted open-source implementer.</td></tr>
           <tr><td class="layer">Model Layer</td><td><span class="chip bundled">Bundled</span></td><td>The agent runtime brings its model, so nothing is needed on day one. Add a governed gateway only when cross-provider routing and per-team cost attribution become a concrete need.</td></tr>
