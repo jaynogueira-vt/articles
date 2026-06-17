@@ -136,15 +136,15 @@
   <div class="wrap">
     <p class="kicker">Proposal · Architecture</p>
     <h1 class="font-display" style="font-weight:400;font-size:clamp(2.4rem,6vw,4rem);line-height:1.08;margin:.6rem 0 0">The Software Factory, designed for change</h1>
-    <p class="lead" style="margin-top:1.1rem">I'm proposing we build an org-wide software factory: one platform that turns our engineering work into reviewed, merge-ready pull requests, architected so every layer stays best-of-breed and replaceable as the AI landscape shifts underneath us. This document is my recommendation, the build-versus-buy call I'd make for each layer, and what I'm asking leadership to decide.</p>
+    <p class="lead" style="margin-top:1.1rem">This proposal sets out an org-wide software factory: one platform that turns engineering work into reviewed, merge-ready pull requests, architected so every layer stays best-of-breed and replaceable as the AI landscape shifts. It states the recommended architecture, the build-versus-buy decision for each layer, and the decision requested of leadership.</p>
     <div class="meta">
       <span>From: <b>Jay Nogueira</b></span>
       <span>To: <b>Engineering leadership</b></span>
       <span>Status: <span class="draft">Draft · for discussion</span></span>
     </div>
     <div class="call" style="margin-top:1.4rem">
-      <h4>What I'm asking for</h4>
-      <p>Approve the contract-first hybrid architecture in this document: a control plane we own, a multi-vendor swap plane for the fast-moving AI layers, and the staged rollout below. Concretely, I want a green light to run Phase 0 and Phase 1 with one team and bring back real merge-rate data before we commit further.</p>
+      <h4>Decision requested</h4>
+      <p>Approve the contract-first hybrid architecture described here: an organization-owned control plane, a multi-vendor swap plane for the fast-moving AI layers, and the staged rollout below. Specifically, authorize Phase 0 and Phase 1 with a single team to produce real merge-rate data before any further commitment.</p>
     </div>
     <div class="toc">
       <a href="#thesis">Why now</a>
@@ -165,12 +165,12 @@
 <!-- THESIS -->
 <section id="thesis">
   <div class="wrap">
-    <p class="kicker">01 · Why this, why now</p>
-    <h2 class="sec">We should design for change, because the AI layer changes constantly</h2>
-    <p class="lead">My core argument is this: the components everyone fixates on (the coding agent, the model, the sandbox) are the fastest-depreciating assets we'd own. A frontier coding agent is useful for a few quarters before something better ships. So I don't want us to bet the platform on any one of them. I want us to own the stable contracts between layers and treat the components as replaceable parts behind those contracts. Do that, and build-versus-buy stops being a one-time bet and becomes a per-layer decision we can re-make every quarter without re-architecting anything.</p>
+    <p class="kicker">01 · Why now</p>
+    <h2 class="sec">Design for change, because the AI layer changes constantly</h2>
+    <p class="lead">The central argument is straightforward: the components that draw the most attention (the coding agent, the model, the sandbox) are the fastest-depreciating assets in the stack. A frontier coding agent stays useful for a few quarters before something better ships. The platform should therefore not be bet on any single one of them. The durable approach is to own the stable contracts between layers and treat the components as replaceable parts behind those contracts. With that in place, build-versus-buy stops being a one-time bet and becomes a per-layer decision that can be re-made every quarter without re-architecting the line.</p>
     <div class="call">
-      <h4>The principle I'm designing around</h4>
-      <p>Build and own the contracts and the org-specific stations; source every commodity station from the best vendor available today and swap it when a better one ships. That single discipline is what lets the platform survive a market that reshuffles every few months.</p>
+      <h4>The principle this proposal is built on</h4>
+      <p>Build and own the contracts and the org-specific stations; source every commodity station from the best vendor available today and replace it when a better one ships. That single discipline is what lets the platform survive a market that reshuffles every few months.</p>
     </div>
     <div class="grid g3">
       <div class="card"><div class="ct">Constraint</div><h4>The AI layer churns fast</h4><p>The best coding agent, the best model, and the best sandbox each change on a months-long cadence. Any architecture that hard-wires one of them is obsolete on arrival.</p></div>
@@ -184,8 +184,8 @@
 <section id="great">
   <div class="wrap">
     <p class="kicker">02 · The bar</p>
-    <h2 class="sec">The eight properties I'm holding this platform to</h2>
-    <p class="lead">"Software factory" borrows the discipline of manufacturing: a standardized line, repeatable stations, inspection at every step, and full traceability. These are the eight properties I want us to be judged against. If the thing we build doesn't have all eight, it's a pile of scripts, not a platform, and I don't want us to ship it as one.</p>
+    <h2 class="sec">The eight properties this platform must hold to</h2>
+    <p class="lead">"Software factory" borrows the discipline of manufacturing: a standardized line, repeatable stations, inspection at every step, and full traceability. The platform should be judged against the eight properties below. A system that does not meet all eight is a collection of scripts, not a platform, and should not ship as one.</p>
     <div class="plist">
       <div class="pitem"><span class="pn">01</span><div><h4>Standardized line, stable stations</h4><p>Work flows through the same defined stations every time. Each station exposes a versioned contract, so what happens inside it can change without disturbing its neighbours.</p></div></div>
       <div class="pitem"><span class="pn">02</span><div><h4>Independent, replaceable stations</h4><p>The defining property. Any station (agent, model, sandbox, orchestrator) can be swapped for a better one, or run in parallel, with no change to the rest of the line. This is what survives the AI churn.</p></div></div>
@@ -193,12 +193,12 @@
       <div class="pitem"><span class="pn">04</span><div><h4>Inspection at every station</h4><p>Tests, lint, type, security, and build gate every run. Above that, an offline evaluation harness measures agent yield so component swaps are decided on data, not vibes.</p></div></div>
       <div class="pitem"><span class="pn">05</span><div><h4>Full traceability</h4><p>Every plan, tool call, diff, decision, retry, and failure is reconstructable. The factory equivalent of a requirements-traceability matrix: from work item to merged code, end to end.</p></div></div>
       <div class="pitem"><span class="pn">06</span><div><h4>Bounded blast radius</h4><p>Per-run isolation, least-privilege and short-lived credentials, network egress policy, per-team namespaces. One run can never harm another team or production.</p></div></div>
-      <div class="pitem"><span class="pn">07</span><div><h4>Measured throughput and yield</h4><p>Cycle time, merge rate by work-item class, cost per merged PR, review burden. A factory you cannot measure is a factory you cannot improve or defend.</p></div></div>
+      <div class="pitem"><span class="pn">07</span><div><h4>Measured throughput and yield</h4><p>Cycle time, merge rate by work-item class, cost per merged PR, review burden. A factory that cannot be measured cannot be improved or defended.</p></div></div>
       <div class="pitem"><span class="pn">08</span><div><h4>Human authority at the gate</h4><p>The factory prepares and routes; humans approve and merge. Autonomous merge is a separate, later, evidence-gated decision, never the default.</p></div></div>
     </div>
     <div class="call human">
-      <h4>Why I keep a human at the gate</h4>
-      <p>I'm not assuming agents are net-positive yet. The most rigorous public study to date (METR, 2025) found experienced developers were measurably slower with AI tooling while believing they were faster, and agent-authored PRs shift load onto reviewers. So I'm treating agent output as a draft to be inspected, making the reviewer experience a first-class part we build, and measuring real yield before we trust it. That's why merge stays human in this proposal, full stop.</p>
+      <h4>Why a human stays at the gate</h4>
+      <p>Agent productivity is not yet a settled question. The most rigorous public study to date (METR, 2025) found experienced developers were measurably slower with AI tooling while believing they were faster, and agent-authored PRs shift load onto reviewers. This proposal therefore treats agent output as a draft to be inspected, makes the reviewer experience a first-class part of the build, and measures real yield before relying on it. Merge stays human, without exception.</p>
     </div>
   </div>
 </section>
@@ -382,7 +382,7 @@
   <div class="wrap">
     <p class="kicker">05 · The core idea</p>
     <h2 class="sec">The swap plane: one contract, many vendors, decided by data</h2>
-    <p class="lead">Layers 4 to 7 are where the AI world moves fastest, so they get the strongest contract discipline. The agent-execution contract (<code>solve(WorkItem, RepoRef) → RunResult</code>) lets you run several implementers behind one interface: route by work-item class, run them head-to-head on the same ticket, and let the eval harness pick the winner. A new frontier agent ships on a Tuesday; you add an adapter and A/B it on Wednesday. No re-architecture, ever.</p>
+    <p class="lead">Layers 4 to 7 are where the AI world moves fastest, so they get the strongest contract discipline. The agent-execution contract (<code>solve(WorkItem, RepoRef) → RunResult</code>) allows several implementers to run behind one interface: route by work-item class, run them head-to-head on the same ticket, and let the eval harness select the winner. When a new frontier agent ships, adoption is a new adapter and an A/B run against the eval suite, not a re-architecture.</p>
     <div class="grid g3">
       <div class="card"><div class="ct">Route</div><h4>By work-item class</h4><p>Bug fix, multi-file feature, refactor, flag removal. Each class routes to the implementer that wins on it. One factory, many specialists.</p></div>
       <div class="card"><div class="ct">Race</div><h4>Head-to-head</h4><p>On high-value tickets, run two implementers on the same WorkItem and keep the better PR. A configuration toggle, not a project.</p></div>
@@ -396,26 +396,26 @@
   <div class="wrap">
     <p class="kicker">06 · The strategy</p>
     <h2 class="sec">Build the moat, buy the commodity, contract everything</h2>
-    <p class="lead">The build-vs-buy decision is made per layer, on one rule: build what is org-specific and durable; buy what is commodity and fast-moving; put a contract on every boundary so any decision is reversible. You are not out-building the frontier agent vendors on the implementer, and you should not try. You are the only one who can build org-aware intake, knowledge, reviewer experience, and governance.</p>
+    <p class="lead">The build-versus-buy decision is made per layer, on one rule: build what is org-specific and durable; buy what is commodity and fast-moving; put a contract on every boundary so any decision is reversible. No internal team will out-build the frontier agent vendors on the implementer, and none should try. The organization is the only party that can build org-aware intake, knowledge, reviewer experience, and governance.</p>
     <div class="tbl">
       <table>
         <thead><tr><th>Layer</th><th>Decision</th><th>Why this side of the line</th></tr></thead>
         <tbody>
           <tr><td class="layer">Intake &amp; Work Spec</td><td><span class="chip build">Build</span></td><td>Scope policy, risk classification, and idempotency are org-specific and rarely change. Durable moat, not commodity.</td></tr>
-          <tr><td class="layer">Control Plane / Reviewer UX</td><td><span class="chip build">Build</span></td><td>The reviewer experience is a competitive surface and must live inside org identity and existing tooling. No vendor owns your reviewers.</td></tr>
+          <tr><td class="layer">Control Plane / Reviewer UX</td><td><span class="chip build">Build</span></td><td>The reviewer experience is a competitive surface and must live inside org identity and existing tooling. No vendor should own the reviewer surface.</td></tr>
           <tr><td class="layer">Orchestration Runtime</td><td><span class="chip hybrid">Own contract</span></td><td>Durable execution is solved, but a full workflow engine is overkill for a line that is mostly idle human-review waits. Own a thin orchestration contract; run it on a managed agent runtime. A durable-workflow engine stays a drop-in replacement behind the same contract if the workflow ever outgrows it.</td></tr>
           <tr><td class="layer">Agent Execution</td><td><span class="chip hybrid">Hybrid</span></td><td>The fastest-churning layer. Run multiple vendor agents behind one contract; keep an open-source fallback for independence and worst-case portability.</td></tr>
           <tr><td class="layer">Execution Sandbox</td><td><span class="chip bundled">Bundled</span></td><td>Managed agents already run in isolated cloud containers, so the sandbox arrives with the layer-4 choice. Procure a standalone sandbox only for the self-hosted open-source implementer.</td></tr>
           <tr><td class="layer">Model Layer</td><td><span class="chip bundled">Bundled</span></td><td>The agent runtime brings its model, so nothing is needed on day one. Add a governed gateway only when cross-provider routing and per-team cost attribution become a concrete need.</td></tr>
           <tr><td class="layer">Tools &amp; Knowledge</td><td><span class="chip hybrid">Hybrid</span></td><td>Adopt MCP servers where official ones exist (live sources). Build the org-specific learned-knowledge retrieval that no vendor can supply.</td></tr>
-          <tr><td class="layer">Quality &amp; Eval Gates</td><td><span class="chip build">Build</span></td><td>Your gates and your eval suite over real tickets are how you decide every other swap. This is the instrument panel; it must be yours.</td></tr>
+          <tr><td class="layer">Quality &amp; Eval Gates</td><td><span class="chip build">Build</span></td><td>The gates and the eval suite over real tickets are how every other swap is decided. This is the instrument panel, and it must be org-owned.</td></tr>
           <tr><td class="layer">Integration &amp; Delivery</td><td><span class="chip buy">Buy/adapt</span></td><td>VCS, tracker, and chat already expose first-class APIs and connectors. Thin idempotent adapters, no bespoke scrapers.</td></tr>
         </tbody>
       </table>
     </div>
     <div class="call">
       <h4>Why not a single vendor end-to-end?</h4>
-      <p>A single-vendor factory (one platform running the whole line) is the easiest path and a real option, but it fails the two requirements ranked highest: <span class="em">independence</span> and <span class="em">easy to change layers</span>. You inherit their orchestration, their reviewer UX, their model choices, and their roadmap. When a better agent ships elsewhere, you cannot adopt it without leaving the platform. Buying a vendor agent is correct; buying a vendor <em>factory</em> trades away the optionality that is the whole point.</p>
+      <p>A single-vendor factory (one platform running the whole line) is the easiest path and a real option, but it fails the two requirements ranked highest: <span class="em">independence</span> and <span class="em">easy to change layers</span>. It imposes the vendor's orchestration, reviewer UX, model choices, and roadmap. When a better agent ships elsewhere, adopting it means leaving the platform. Buying a vendor agent is correct; buying a vendor <em>factory</em> trades away the optionality that is the whole point.</p>
     </div>
     <div class="call warn">
       <h4>Why not pure in-house?</h4>
@@ -449,7 +449,7 @@
       <table>
         <thead><tr><th>Concern</th><th>Posture</th><th>Reasoning</th></tr></thead>
         <tbody>
-          <tr><td class="layer">Execution sandbox</td><td><span class="chip bundled">Bundled</span></td><td>Managed agents run each session in an isolated container, pre-loaded with common languages and DB clients. You inherit isolation from the layer-4 choice. E2B / Daytona / Modal — or self-hosted sandbox mode — enter only if you add the self-hosted implementer or have data that cannot leave your network.</td></tr>
+          <tr><td class="layer">Execution sandbox</td><td><span class="chip bundled">Bundled</span></td><td>Managed agents run each session in an isolated container, pre-loaded with common languages and DB clients. Isolation is inherited from the layer-4 choice. E2B / Daytona / Modal — or self-hosted sandbox mode — become relevant only when the self-hosted implementer is added or data cannot leave the organization's network.</td></tr>
           <tr><td class="layer">Model layer</td><td><span class="chip bundled">Bundled</span></td><td>The agent runtime ships its model, so nothing is required to start. A governed gateway (Portkey, LiteLLM, OpenRouter) is a deferred add for cross-provider routing and per-team cost attribution — adopt it when that need is real.</td></tr>
           <tr><td class="layer">Orchestration runtime</td><td><span class="chip hybrid">Decided</span></td><td>Run on a managed agent runtime; own the thin orchestration contract. A durable-workflow engine (Temporal Cloud, AWS Bedrock AgentCore) stays a drop-in replacement behind that contract if the workflow ever outgrows it. Not a separate purchase.</td></tr>
           <tr><td class="layer">Tools / interop</td><td><span class="chip hybrid">Adopt MCP</span></td><td>Use official MCP servers for live sources. MCP is consolidating as the vendor-neutral tool standard and is the seam that keeps layer 7 portable across agents.</td></tr>
@@ -463,11 +463,11 @@
 <!-- RECOMMENDATION -->
 <section id="recommendation">
   <div class="wrap">
-    <p class="kicker">08 · My recommendation</p>
+    <p class="kicker">08 · Recommendation</p>
     <h2 class="sec">Build an owned control plane over a multi-vendor swap plane</h2>
-    <p class="lead">My recommendation is that we build a thin, durable control plane we own end to end: intake and policy, the reviewer experience inside our own identity, the gates, the eval harness, and the knowledge layer. We run it on a managed cloud runtime. We treat the implementer, the sandbox, and the models as best-of-breed plug-ins behind contracts, run several at once, and let measured yield decide which one wins each class of work. Buy the commodity, build the moat we're actually good at, and keep every boundary swappable. I'd not pursue a single-vendor factory or a pure in-house build, for the reasons in the build-versus-buy and scorecard sections above.</p>
+    <p class="lead">The recommendation is to build a thin, durable control plane the organization owns end to end: intake and policy, the reviewer experience inside its own identity, the gates, the eval harness, and the knowledge layer, run on a managed cloud runtime. The implementer, the sandbox, and the models are treated as best-of-breed plug-ins behind contracts; several run at once, and measured yield decides which one wins each class of work. Buy the commodity, build the moat, and keep every boundary swappable. A single-vendor factory and a pure in-house build are both rejected, for the reasons set out in the build-versus-buy and scorecard sections above.</p>
     <div class="grid g2">
-      <div class="card"><div class="ct">The org builds · the moat</div><h4>Control plane + knowledge + gates</h4><p>Intake and scope policy, the authenticated reviewer surface, the quality + eval gates, and retrieval over org systems. Durable, org-specific, and the instruments by which every other choice is made. They do not churn with the model of the month.</p></div>
+      <div class="card"><div class="ct">The org builds · the moat</div><h4>Control plane + knowledge + gates</h4><p>Intake and scope policy, the authenticated reviewer surface, the quality + eval gates, and retrieval over org systems. Durable, org-specific, and the instruments by which every other choice is made. They do not churn as models and agents are replaced.</p></div>
       <div class="card"><div class="ct">The org buys / bundles · the commodity</div><h4>Agents + sandbox + models + runtime</h4><p>Multiple vendor implementers behind one contract, a managed agent runtime, sandbox + model bundled with the agent, delivery adapters, and live tools over MCP. Cloud-native, scalable, replaced on the market's cadence.</p></div>
     </div>
     <div class="call">
@@ -480,9 +480,9 @@
 <!-- SCORECARD -->
 <section id="scorecard">
   <div class="wrap">
-    <p class="kicker">09 · How I weighed it</p>
-    <h2 class="sec">Scorecard against our requirements</h2>
-    <p class="lead">Here's how I score the three options against the requirements we care about. These are my judgements, not measurements, but the conclusion is clear: the contract-first hybrid is the only one that wins on the two things I weight highest, independence and ease of changing layers. That's why it's my recommendation.</p>
+    <p class="kicker">09 · How it was weighed</p>
+    <h2 class="sec">Scorecard against the requirements</h2>
+    <p class="lead">The three options below are scored against the requirements that matter for this platform. The scores are structured judgement, not measurement, but the conclusion is unambiguous: the contract-first hybrid is the only option that wins on the two requirements weighted highest, independence and ease of changing layers. That is why it is the recommendation.</p>
     <div class="tbl">
       <table>
         <thead><tr><th style="width:34%">Requirement</th><th>Single vendor factory</th><th>Pure in-house build</th><th>Contract-first hybrid</th></tr></thead>
@@ -498,7 +498,7 @@
         </tbody>
       </table>
     </div>
-    <p class="src">Single-vendor wins on time-to-value but loses on independence and changeability, which is where I'm not willing to compromise. Pure in-house wins on control but can't stay best-of-breed across the fast-churning layers. The contract-first hybrid is the only option that holds up across all eight, because it buys the commodity, builds the moat, and keeps every boundary reversible.</p>
+    <p class="src">Single-vendor wins on time-to-value but loses on independence and changeability, the two requirements this proposal will not compromise. Pure in-house wins on control but cannot stay best-of-breed across the fast-churning layers. The contract-first hybrid is the only option that holds up across all eight, because it buys the commodity, builds the moat, and keeps every boundary reversible.</p>
   </div>
 </section>
 
@@ -520,8 +520,8 @@
 <!-- RISKS -->
 <section id="risks">
   <div class="wrap">
-    <p class="kicker">11 · Where I could be wrong</p>
-    <h2 class="sec">The risks I'm watching, and how I'd handle them</h2>
+    <p class="kicker">11 · Risks</p>
+    <h2 class="sec">The risks, and how they are handled</h2>
     <ul class="clean">
       <li><b>Contract churn.</b> If the swap-plane contracts are wrong, every adapter leaks and the independence promise collapses. Mitigation: keep contracts minimal, version them, and prove them with two real vendors in Phase 1 before committing.</li>
       <li><b>Bespoke-orchestrator creep.</b> Running orchestration on a managed runtime instead of a workflow engine means the org owns the workflow state machine. If the line grows complex (parallel fan-out, compensation / rollback, replay-for-compliance), that hand-rolled layer becomes the thing a durable-workflow engine would have given for free. Mitigation: keep the orchestration contract minimal so the engine drops in behind it the moment the hand-rolled version strains.</li>
