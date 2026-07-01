@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-scroll-behavior="smooth">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RFC Authoring · Skills · Jay Nogueira</title>
+<meta name="description" content="An RFC authoring skill for AI coding agents: a canonical 11-section structure, a firm product-vs-design boundary, depth anchors that separate real design content from placeholder prose, and a research-first rule for infrastructure claims."/>
+<meta name="author" content="Jay Nogueira"/>
+<meta property="og:title" content="RFC Authoring · Jay Nogueira"/>
+<meta property="og:description" content="Design docs that are implementation contracts, not product briefs with RFC headings. Depth anchors, alternatives discipline, research-first claims."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://jaynogueira-vt.github.io/notes/skills/rfc-authoring/"/>
+<meta property="og:site_name" content="Jay Nogueira"/>
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"/>
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)"/>
+<link rel="icon" href="../../assets/icon.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="../../assets/fonts.css"/>
+<link rel="stylesheet" href="../../assets/site.css"/>
+<script>(function(){try{var t=localStorage.getItem("theme");var d=t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(d){document.documentElement.classList.add("dark");document.documentElement.style.colorScheme="dark"}else{document.documentElement.style.colorScheme="light"}}catch(e){}})();</script>
+</head>
+<body class="playfair_display_788cf017-module__UR335q__variable source_serif_4_1dcf62f-module__tdgqBa__variable inter_96c4af0c-module__Y9_Geq__variable antialiased">
+<div class="bg-background text-foreground flex min-h-screen flex-col">
+<a href="#main-content" class="bg-background text-foreground focus-visible:ring-ring sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-3 focus:ring-2 focus:outline-none">Skip to content</a>
+<header class="border-border bg-background sticky top-0 z-50 w-full border-b">
+<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+<a class="focus-visible:ring-ring inline-flex min-h-11 items-center font-sans text-sm font-semibold tracking-[0.22em] uppercase focus-visible:ring-2 focus-visible:outline-none" href="../../index.html"><span>Jay Nogueira</span></a>
+<div class="flex items-center gap-2">
+<a class="hover:text-foreground text-muted-foreground focus-visible:ring-ring inline-flex min-h-11 shrink-0 items-center px-3 font-sans text-xs font-semibold tracking-[0.12em] uppercase transition-colors focus-visible:ring-2 focus-visible:outline-none" href="../../articles/index.html">Articles</a>
+<a class="hover:text-foreground text-muted-foreground focus-visible:ring-ring inline-flex min-h-11 shrink-0 items-center px-3 font-sans text-xs font-semibold tracking-[0.12em] uppercase transition-colors focus-visible:ring-2 focus-visible:outline-none" href="../../docs/index.html">Docs</a>
+<a class="text-foreground focus-visible:ring-ring inline-flex min-h-11 shrink-0 items-center px-3 font-sans text-xs font-semibold tracking-[0.12em] uppercase focus-visible:ring-2 focus-visible:outline-none" href="../../skills/index.html" aria-current="true">Skills</a>
+<button type="button" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle theme" class="border-border bg-background text-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring relative inline-flex h-11 w-11 items-center justify-center rounded-md border transition-colors focus-visible:ring-2 focus-visible:outline-none"><svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg><svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main-content" class="flex-1" tabindex="-1">
+<div class="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+<article class="min-w-0 lg:max-w-3xl">
+
+<header class="border-border border-b pb-10">
+<p class="text-muted-foreground font-sans text-xs font-semibold tracking-[0.2em] uppercase">Skill / Engineering / Design docs</p>
+<h1 class="font-display mt-5 text-4xl leading-tight font-normal sm:text-5xl md:text-6xl">RFC Authoring</h1>
+<p class="text-muted-foreground mt-6 font-serif text-xl leading-relaxed">A method for writing an engineering RFC that is an implementation contract, not a product brief wearing an RFC hat: a canonical 11-section structure, per-section depth anchors, an alternatives discipline, and a research-first rule for every infrastructure claim.</p>
+<div class="mt-8 flex flex-wrap gap-3">
+<a href="rfc-authoring.md" download="rfc-authoring.md" class="border-border hover:bg-secondary focus-visible:ring-ring inline-flex items-center border px-4 py-2 font-sans text-xs font-semibold tracking-[0.12em] uppercase transition-colors focus-visible:ring-2 focus-visible:outline-none">Get the skill (Markdown)</a>
+</div>
+</header>
+
+<div class="mt-10 space-y-6 font-serif text-lg leading-8 sm:text-xl sm:leading-9">
+
+<h2 id="summary" class="font-display scroll-mt-24 mt-10 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">In one paragraph</h2>
+<p>The most common failure in design docs is not missing sections: it is sections with the right names and product-brief content, so engineering review turns into product debate and nobody can start coding. This skill holds two lines. First, a firm boundary: the product doc owns WHAT and WHY, the RFC owns HOW, and content that crosses the line gets moved, not duplicated. Second, depth anchors: for every section there is a concrete bar ("a <code>CREATE TABLE</code> with constraints and the migration tooling named", not "we'll need a table"), and a section that cannot reach the bar gets an explicit pending-research marker instead of filler prose. Around that core it fixes the structure (eleven canonical sections, synthesized from Google Design Docs, Phil Calcado's RFC process, and Oxide's RFDs), requires real alternatives with rejection reasons, and enforces research-first: verify infrastructure claims against the code before asserting them.</p>
+
+<h2 id="what-it-is" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">What it is</h2>
+<ul class="ml-5 list-disc space-y-2 marker:text-accent">
+<li>A canonical 11-section structure: Summary, Context, Goals &amp; Non-Goals, Proposed Design (system context, data model, API, state machine, errors, compatibility, performance), Alternatives, Cross-Cutting Concerns, Rollout, Open Questions, Approvals, Revision History, Appendix.</li>
+<li>A boundary table separating product-doc concerns (audience, domain language, policy, launch windows) from RFC concerns (identifiers, endpoints, event schemas, staged rollouts).</li>
+<li>Per-section depth anchors: what "shallow, reject" and "real depth, target" look like for each section.</li>
+<li>A research-first workflow: read the actual repos, confirm the producer side of every consumed event, check the domain glossary before naming anything new.</li>
+<li>Rules for when an RFC is warranted at all, and when a ticket or an ADR is the right size instead.</li>
+<li>Agent-agnostic: written for any skill-aware AI coding agent; adapt the publish steps to your team's wiki or docs repo.</li>
+</ul>
+
+<h2 id="what-it-does" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">What it does</h2>
+<ul class="ml-5 list-disc space-y-2 marker:text-accent">
+<li>Forces at least three named alternatives with explicit rejection reasons, "do nothing" always among them.</li>
+<li>Requires state machines to name invariants and concurrency behavior, and rollout plans to name the flag, the gates, and the kill switch.</li>
+<li>Maps every plain-language success signal to a concrete event, metric, or span in the observability section.</li>
+<li>Marks unverifiable claims explicitly (pending research, or inferred with a verification target) so reviewers get a worklist instead of a guess.</li>
+<li>Resolves open questions from the codebase where possible, with evidence and a revisit trigger, then renames the section to Design Decisions once nothing is actually open.</li>
+</ul>
+
+<h2 id="what-it-does-not" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">What it does <em>not</em> do</h2>
+<ul class="ml-5 list-disc space-y-2 marker:text-accent">
+<li>It does not duplicate the product doc: policy, scope, and metric targets stay where they belong.</li>
+<li>It does not accept filler prose where a section cannot reach its depth anchor; the gap gets marked, not hidden.</li>
+<li>It does not assert a framework, queue, event, or pattern it has not verified in the code.</li>
+<li>It does not edit the companion product doc, even when it finds an error there; it flags the owner instead.</li>
+<li>It does not park answerable questions in Open Questions or file tickets as a substitute for an hour of code reading.</li>
+</ul>
+
+<h2 id="when-to-use" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">When to reach for it</h2>
+<p>"Write an RFC", "design doc", "technical spec", or an approved product requirements doc whose next step is engineering design. Best fit: changes that cross services or teams, introduce persistent state, or hinge on at least one decision where the rejected alternatives matter. Wrong fit: single-file refactors, bug fixes, and single-team decisions with no external surface (use an ADR).</p>
+
+<h2 id="the-core" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">The discipline, in six rules</h2>
+<ol class="ml-5 list-decimal space-y-2 marker:text-muted-foreground marker:font-sans">
+<li><strong class="font-sans font-semibold">Hold the boundary</strong>: the product doc owns WHAT and WHY; the RFC owns HOW. Content that crosses gets moved.</li>
+<li><strong class="font-sans font-semibold">Reach the depth anchor</strong>: every section either meets its concrete bar or carries an explicit pending marker.</li>
+<li><strong class="font-sans font-semibold">Research before prose</strong>: verify infrastructure claims in the code; tag the rest as inferred with a verification target.</li>
+<li><strong class="font-sans font-semibold">Real alternatives</strong>: three or more, named, described, explicitly rejected; "do nothing" included.</li>
+<li><strong class="font-sans font-semibold">Ship-safe by design</strong>: invariants on the state machine, a kill switch on the rollout, observability mapped to concrete signals.</li>
+<li><strong class="font-sans font-semibold">Close your own questions</strong>: resolve what the codebase can answer, with evidence and a revisit trigger; leave open only what is genuinely undecided.</li>
+</ol>
+
+<h2 id="get-it" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">Get it</h2>
+<p>The full skill (the section structure, the boundary table, the depth anchors, the self-review checklist, and ten pitfalls learned the hard way) is a single Markdown file. Drop it into your agent's skills directory and adapt the publish steps to wherever your team keeps design docs.</p>
+<p><a href="rfc-authoring.md" download="rfc-authoring.md" class="text-accent underline-offset-4 hover:underline">Download rfc-authoring.md &rarr;</a></p>
+
+</div>
+</article>
+</div>
+</main>
+<footer class="bg-primary text-primary-foreground border-primary border-t">
+<div class="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:px-8">
+<div>
+<p class="font-sans text-xs font-semibold tracking-[0.22em] uppercase">Jay Nogueira</p>
+<p class="text-primary-foreground/80 mt-4 max-w-2xl font-serif text-lg leading-relaxed">Notes on AI-native software delivery, harness engineering, and receipt-backed decisions.</p>
+<p class="text-primary-foreground/70 mt-6 font-sans text-xs tracking-[0.14em] uppercase">&copy; 2026 Jay Nogueira. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+<script>function toggleTheme(){var h=document.documentElement;var d=h.classList.toggle("dark");h.style.colorScheme=d?"dark":"light";try{localStorage.setItem("theme",d?"dark":"light")}catch(e){}}</script>
+</body>
+</html>
