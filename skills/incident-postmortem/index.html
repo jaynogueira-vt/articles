@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Incident Post-mortem — Skills — Jay Nogueira</title>
+<title>Incident Post-mortem :: Skills :: Jay Nogueira</title>
 <meta name="description" content="An evidence-first incident post-mortem skill for AI coding agents: verify every claim against a durable artifact, write a real 5 Whys, and publish a record that stays true a year later."/>
 <meta name="author" content="Jay Nogueira"/>
-<meta property="og:title" content="Incident Post-mortem — Jay Nogueira"/>
+<meta property="og:title" content="Incident Post-mortem :: Jay Nogueira"/>
 <meta property="og:description" content="Evidence over transcript; a real 5 Whys; exact numbers; no blame, no meta-narration. A post-mortem skill for AI coding agents."/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="https://jaynogueira-vt.github.io/notes/skills/incident-postmortem/"/>
@@ -39,7 +39,7 @@
 <header class="border-border border-b pb-10">
 <p class="text-muted-foreground font-sans text-xs font-semibold tracking-[0.2em] uppercase">Skill / Reliability / Post-mortems</p>
 <h1 class="font-display mt-5 text-4xl leading-tight font-normal sm:text-5xl md:text-6xl">Incident Post-mortem</h1>
-<p class="text-muted-foreground mt-6 font-serif text-xl leading-relaxed">An evidence-first method for writing an incident post-mortem. It verifies every factual claim against a durable artifact, forces a real 5 Whys instead of prose, and produces a record that still reads true a year later — not a transcript of the war room.</p>
+<p class="text-muted-foreground mt-6 font-serif text-xl leading-relaxed">An evidence-first method for writing an incident post-mortem. It verifies every factual claim against a durable artifact, forces a real 5 Whys instead of prose, and produces a record that still reads true a year later, not a transcript of the war room.</p>
 <div class="mt-8 flex flex-wrap gap-3">
 <a href="incident-postmortem.md" download="incident-postmortem.md" class="border-border hover:bg-secondary focus-visible:ring-ring inline-flex items-center border px-4 py-2 font-sans text-xs font-semibold tracking-[0.12em] uppercase transition-colors focus-visible:ring-2 focus-visible:outline-none">Get the skill (Markdown)</a>
 </div>
@@ -48,12 +48,12 @@
 <div class="mt-10 space-y-6 font-serif text-lg leading-8 sm:text-xl sm:leading-9">
 
 <h2 id="summary" class="font-display scroll-mt-24 mt-10 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">In one paragraph</h2>
-<p>The difference between a trustworthy post-mortem and a plausible-looking one is where its claims come from. Incident channels and call transcripts are full of live hypotheses people voiced while debugging — leads to verify, not facts to publish. This skill enforces one rule above all: <em>every factual claim is backed by a durable artifact — code, a merged PR, a config console, a ticket, production data — and anything that cannot be fact-checked is cut, not softened.</em> Around that core it standardizes the section structure, forces Root Cause to be a real 5 Whys, and strips the blame, approximate numbers, and meta-narration that quietly make reviewers distrust the whole document.</p>
+<p>The difference between a trustworthy post-mortem and a plausible-looking one is where its claims come from. Incident channels and call transcripts are full of live hypotheses people voiced while debugging, which are leads to verify, not facts to publish. This skill enforces one rule above all: <em>every factual claim is backed by a durable artifact (code, a merged PR, a config console, a ticket, production data), and anything that cannot be fact-checked is cut, not softened.</em> Around that core it standardizes the section structure, forces Root Cause to be a real 5 Whys, and strips the blame, approximate numbers, and meta-narration that quietly make reviewers distrust the whole document.</p>
 
 <h2 id="what-it-is" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">What it is</h2>
 <ul class="ml-5 list-disc space-y-2 marker:text-accent">
 <li>An evidence discipline: list every causal claim the transcript suggests, prove each against an artifact, keep only what you proved.</li>
-<li>A canonical structure — Intro, Metadata, Summary, Impact, Root Cause, Action Items, Full COE Required?, and a recommended Evidence section that makes every claim auditable.</li>
+<li>A canonical structure: Intro, Metadata, Summary, Impact, Root Cause, Action Items, Full COE Required?, and a recommended Evidence section that makes every claim auditable.</li>
 <li>A hard rule that Root Cause is a real 5 Whys (question → because → question, down to the true root cause), with no side-sections.</li>
 <li>A from-scratch build workflow for when an existing post-mortem needs to be redone from evidence rather than reworded.</li>
 <li>Agent-agnostic: written for any skill-aware AI coding agent; adapt the template and publish steps to your own wiki.</li>
@@ -62,7 +62,7 @@
 <h2 id="what-it-does" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">What it does</h2>
 <ul class="ml-5 list-disc space-y-2 marker:text-accent">
 <li>Separates the trigger (the change that set it off) from the amplifier (what made it worse), and keeps upstream responsibility clear without blame.</li>
-<li>Forces exact, verified numbers from logs or the database — reserving the approximate "~" for sourced external expectations only.</li>
+<li>Forces exact, verified numbers from logs or the database, reserving the approximate "~" for sourced external expectations only.</li>
 <li>Requires every ticket, PR, and prior post-mortem to be a described link, never a bare ID.</li>
 <li>Reads the existing doc's review comments as the must-fix list before rewriting.</li>
 <li>Verifies after publishing: re-fetch the stored form, re-run the hygiene checks, confirm every section and link resolves.</li>
@@ -70,9 +70,9 @@
 
 <h2 id="what-it-does-not" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">What it does <em>not</em> do</h2>
 <ul class="ml-5 list-disc space-y-2 marker:text-accent">
-<li>It does not let a claim survive on the strength of "the war room thought so" — unbacked claims are cut, not attributed.</li>
+<li>It does not let a claim survive on the strength of "the war room thought so": unbacked claims are cut, not attributed.</li>
 <li>It does not accept a paragraph that describes the cause in place of an actual 5 Whys.</li>
-<li>It does not end a 5 Why at organizational fault — it ends at the technical mechanism.</li>
+<li>It does not end a 5 Why at organizational fault. It ends at the technical mechanism.</li>
 <li>It does not tolerate approximate measurements, bare-ID links, mixed timezones, or meta-narration about how the doc was written.</li>
 <li>It does not publish secrets, local paths, or raw logs into a record meant to stay durable.</li>
 </ul>
@@ -82,16 +82,16 @@
 
 <h2 id="the-core" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">The discipline, in six rules</h2>
 <ol class="ml-5 list-decimal space-y-2 marker:text-muted-foreground marker:font-sans">
-<li><strong class="font-sans font-semibold">Evidence over transcript</strong> — a claim is only as good as the artifact that proves it; cut what you cannot check.</li>
-<li><strong class="font-sans font-semibold">A real 5 Whys</strong> — chain symptom to root cause in question/because pairs, no side-sections.</li>
-<li><strong class="font-sans font-semibold">Exact numbers</strong> — measurements from logs or the database; "~" only on a sourced external estimate.</li>
-<li><strong class="font-sans font-semibold">Described links</strong> — every ticket, PR, and prior doc is a hyperlink with human-readable text, never a bare ID.</li>
-<li><strong class="font-sans font-semibold">No blame, no meta</strong> — attribute code ownership factually; never narrate how the doc was written.</li>
-<li><strong class="font-sans font-semibold">Verify after publish</strong> — re-fetch, re-scan, confirm every section and link, guard against version drift.</li>
+<li><strong class="font-sans font-semibold">Evidence over transcript</strong>: a claim is only as good as the artifact that proves it; cut what you cannot check.</li>
+<li><strong class="font-sans font-semibold">A real 5 Whys</strong>: chain symptom to root cause in question/because pairs, no side-sections.</li>
+<li><strong class="font-sans font-semibold">Exact numbers</strong>: measurements from logs or the database; "~" only on a sourced external estimate.</li>
+<li><strong class="font-sans font-semibold">Described links</strong>: every ticket, PR, and prior doc is a hyperlink with human-readable text, never a bare ID.</li>
+<li><strong class="font-sans font-semibold">No blame, no meta</strong>: attribute code ownership factually; never narrate how the doc was written.</li>
+<li><strong class="font-sans font-semibold">Verify after publish</strong>: re-fetch, re-scan, confirm every section and link, guard against version drift.</li>
 </ol>
 
 <h2 id="get-it" class="border-border font-display scroll-mt-24 mt-8 border-t pt-8 text-3xl leading-tight font-normal tracking-tight sm:text-4xl">Get it</h2>
-<p>The full skill — the evidence discipline, the complete section structure, the 5 Whys rule, the from-scratch build workflow, the hygiene rules, and the pitfalls — is a single Markdown file. Drop it into your agent's skills directory and adapt the template and publish steps to your own wiki.</p>
+<p>The full skill (the evidence discipline, the complete section structure, the 5 Whys rule, the from-scratch build workflow, the hygiene rules, and the pitfalls) is a single Markdown file. Drop it into your agent's skills directory and adapt the template and publish steps to your own wiki.</p>
 <p><a href="incident-postmortem.md" download="incident-postmortem.md" class="text-accent underline-offset-4 hover:underline">Download incident-postmortem.md &rarr;</a></p>
 
 </div>

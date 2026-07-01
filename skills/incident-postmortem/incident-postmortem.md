@@ -52,7 +52,7 @@ fully-evidenced Root Cause beats a complete-looking one built on hearsay.
 Process when drafting Root Cause from a transcript:
 
 1. List every causal claim the transcript suggests.
-2. For each, find the durable artifact that proves it — grep the schema, open the
+2. For each, find the durable artifact that proves it: grep the schema, open the
    PR, check the flag, find the message. A missing-constraint or wrong-default
    class of claim is usually checkable directly in the schema or config.
 3. Keep only what you proved; cut the rest.
@@ -75,26 +75,26 @@ A post-mortem is a **lightweight COE** (Correction of Error), not a full COE:
 Do not invent or reorder sections. Match your team's template; the canonical
 shape is:
 
-1. **Intro panel** — one line identifying the incident and linking the incident
+1. **Intro panel**: one line identifying the incident and linking the incident
    ticket (as a described link, never a bare ID).
-2. **Metadata** — a compact two-column table: Team, Started, Detected, Resolved,
+2. **Metadata**: a compact two-column table: Team, Started, Detected, Resolved,
    Detected By, Incident Owner, Engineering Owner, Other Attendees. Attribute the
    team that owns the *changed code* distinctly from the team that was *impacted*.
-3. **Summary** — a short multi-paragraph narrative: what went wrong, what the team
+3. **Summary**: a short multi-paragraph narrative: what went wrong, what the team
    had to do, what was done, and the reassuring close (e.g. "delayed, not lost; no
    incorrect side effects"). Not a bullet dump.
-4. **Impact** — blast radius in exact terms: how many users / records / sessions,
+4. **Impact**: blast radius in exact terms: how many users / records / sessions,
    over what window, and time to recover. Labeled analytical lines, not a flat
    list.
-5. **Root Cause** — the most important section. See below.
-6. **Action Items** — a short preamble, then **Short-term** and **Long-term**
+5. **Root Cause**: the most important section. See below.
+6. **Action Items**: a short preamble, then **Short-term** and **Long-term**
    subsections, each a numbered table with **one ticket per row**, every ticket a
    described link. Apply your tracker's remediation labels (commonly `coe` for
    short-term and `coe_longterm` for long-term) so the items are trackable.
-7. **Full COE Required?** — yes/no plus an explanation that defends the decision.
+7. **Full COE Required?**: yes/no plus an explanation that defends the decision.
    If the root cause is fully understood and the action items are concrete, you
    usually do not need a full COE.
-8. **Evidence** (recommended) — the durable artifacts behind every claim, grouped
+8. **Evidence** (recommended): the durable artifacts behind every claim, grouped
    under bold labels (Incident tracking, Response and timeline, Triggering change,
    Code touchpoints, Remediation). This is what makes the evidence discipline
    auditable: every claim in Root Cause and Impact should trace to a link here.
@@ -109,7 +109,7 @@ cause. A paragraph that merely narrates the cause does not satisfy this and a go
 reviewer will bounce it.
 
 **Root Cause has no subsections.** It is the 5 Whys and nothing else. Do not add
-"Contributing factors", "Mitigation", or "Ruled out" headings — mitigation belongs
+"Contributing factors", "Mitigation", or "Ruled out" headings. Mitigation belongs
 in the Summary narrative, and a genuinely important dismissed hypothesis goes in
 one sentence at the end of the relevant Why, not a standalone section.
 
@@ -125,15 +125,15 @@ The common trigger is "the existing post-mortem is bad, redo it from scratch,"
 which means a full evidence build, not a reword. Gather in parallel:
 
 1. **Read the existing doc and all its comments.** The comments are reviewers
-   telling you what is missing — that is your must-fix list.
+   telling you what is missing. That is your must-fix list.
 2. **Resolve every input link.** Identify upstream vs downstream incident docs and
    cross-link them.
 3. **Find the incident call transcript(s)** and extract the timeline, decisions,
-   and who did what — as leads to verify, per the evidence discipline above.
+   and who did what, as leads to verify, per the evidence discipline above.
 4. **Pull the tracker**: incident tickets, short-term fix tickets, long-term epic.
 5. **Read the repo(s)** for what actually shipped as the short-term fix (PRs) and
    what is planned long-term (epic + design doc).
-6. **Get exact numbers from production** — logs or the database, not estimates.
+6. **Get exact numbers from production**: logs or the database, not estimates.
 7. **Draft into the template**, grounded in evidence, and review with a human
    before publishing.
 
@@ -148,17 +148,17 @@ which means a full evidence build, not a reword. Gather in parallel:
 - **Links carry a short description, never a bare ID.** Every ticket, PR, and
   prior post-mortem is a hyperlink whose visible text is a few descriptive words,
   never the raw key or number. `Add the missing foreign-key constraint` linked to
-  the ticket — not `PROJ-1234` as the label, and not `PROJ-1234:` as a prefix.
+  the ticket, not `PROJ-1234` as the label, and not `PROJ-1234:` as a prefix.
 - **One timezone, stated.** Pick your team's canonical timezone and use it
   consistently; never mix in UTC silently.
 - **No blame.** Attribute who owns the changed code vs who was impacted, factually
-  and minimally, in the metadata — not as a grievance in Root Cause.
+  and minimally, in the metadata, not as a grievance in Root Cause.
 - **No meta / process / self-narration.** The doc contains incident facts only,
   never commentary about how the doc was written ("data first, since that's what
   readers want", "as requested", "the prior version"). If data goes first, just
   put it first; do not announce that you are doing so.
 - **No duplication.** The reassuring "no data lost / no incorrect side effects"
-  line tends to repeat — say it once.
+  line tends to repeat, so say it once.
 - **Keep it durable.** No local file paths, temp paths, raw logs, tokens, or
   secrets in the body. Everything should still make sense a year later.
 
@@ -169,7 +169,7 @@ which means a full evidence build, not a reword. Gather in parallel:
 - **Version-drift trap:** if a human may be editing the live page while you work,
   re-fetch it immediately before you write and check the version. If it advanced
   past the version your edit was based on, re-derive your change on the fresh copy
-  rather than blindly overwriting — otherwise you clobber their edits (column
+  rather than blindly overwriting, or you clobber their edits (column
   widths, label fixes, and so on).
 - After publishing, re-fetch the stored form and re-run the hygiene checks on it
   (wiki engines silently transform characters on round-trip), confirm every
@@ -179,7 +179,7 @@ which means a full evidence build, not a reword. Gather in parallel:
 
 1. **Transcript claims leak into Root Cause.** The single most common failure.
    "Event logs confirm a failure", "a migration script was never applied", "an
-   error in the script itself" — all classic transcript hypotheses that sound
+   error in the script itself": all classic transcript hypotheses that sound
    authoritative and turn out to be unverifiable or wrong. Verify each against an
    artifact or cut it.
 2. **The 5 Whys is really a paragraph.** If it does not chain question →
@@ -193,15 +193,15 @@ which means a full evidence build, not a reword. Gather in parallel:
    document. Scan for them before publishing.
 6. **Short-term lists forced to match across paired docs.** When an upstream and a
    downstream post-mortem share a long-term fix, keep that long-term item identical
-   and concise across both, but let the short-term lists differ — they are
+   and concise across both, but let the short-term lists differ, because they are
    different incidents with different immediate fixes.
 
 ## Tools this skill uses
 
-- wiki / docs API — read the existing doc and its comments, publish, re-fetch to
+- wiki / docs API: read the existing doc and its comments, publish, re-fetch to
   verify
-- tracker API — pull incident, fix, and epic tickets; apply remediation labels
-- file/content search + file read — open the code and schema that prove or
+- tracker API: pull incident, fix, and epic tickets; apply remediation labels
+- file/content search + file read: open the code and schema that prove or
   disprove each causal claim
-- terminal — inspect merged PRs, run the hygiene scans, query production for exact
+- terminal: inspect merged PRs, run the hygiene scans, query production for exact
   numbers
